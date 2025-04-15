@@ -1,0 +1,29 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="jakarta.faces.html"
+                xmlns:ui="jakarta.faces.facelets"
+                xmlns:f="jakarta.faces.core">
+
+    <h2>Fornmulario de Registro</h2>
+    <h:form>
+        <h:panelGrid columns="2">
+            <h:outputLabel for="nombre" value="Nombre:"/>
+            <h:inputText id="nombre" value="#{autorBean.name}" required="true"/>
+
+            <h:outputLabel for="fecha" value="Fecha de nacimiento:"/>
+            <h:inputText id="fecha" value="#{autorBean.birthday}" required="true"/>
+
+            <h:outputLabel for="telefono" value="Teléfono:"/>
+            <h:inputText id="telefono" value="#{autorBean.phoneNumber}"/>
+
+            <h:outputLabel for="genero" value="Género:"/>
+            <h:selectOneMenu id="genero" value="#{autorBean.genre}">
+                <f:selectItem itemLabel="Seleccionar" itemValue=""/>
+                <f:selectItem itemLabel="Masculino" itemValue="M"/>
+                <f:selectItem itemLabel="Femenino" itemValue="F"/>
+            </h:selectOneMenu>
+
+            <h:outputText value=""/>
+            <h:commandButton value="Guardar" action="#{autorBean.addAuthor}"/>
+        </h:panelGrid>
+    </h:form>
+</ui:composition>
