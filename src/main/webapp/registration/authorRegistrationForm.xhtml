@@ -7,23 +7,23 @@
     <h:form>
         <h:panelGrid columns="2">
             <h:outputLabel for="nombre" value="Nombre:"/>
-            <h:inputText id="nombre" value="#{autorBean.name}" required="true"/>
+            <h:inputText id="nombre" value="#{authorBean.name}" required="true"/>
 
             <h:outputLabel for="fecha" value="Fecha de nacimiento:"/>
-            <h:inputText id="fecha" value="#{autorBean.birthday}" required="true"/>
+            <h:inputText id="fecha" value="#{authorBean.birthday}" required="true"/>
 
             <h:outputLabel for="telefono" value="Teléfono:"/>
-            <h:inputText id="telefono" value="#{autorBean.phoneNumber}"/>
+            <h:inputText id="telefono" value="#{authorBean.phoneNumber}"/>
 
             <h:outputLabel for="genero" value="Género:"/>
-            <h:selectOneMenu id="genero" value="#{autorBean.genre}">
+            <h:selectOneMenu id="genero" value="#{authorBean.genre}">
                 <f:selectItem itemLabel="Seleccionar" itemValue=""/>
                 <f:selectItem itemLabel="Masculino" itemValue="M"/>
                 <f:selectItem itemLabel="Femenino" itemValue="F"/>
             </h:selectOneMenu>
 
             <h:outputText value=""/>
-            <h:commandButton value="Guardar" action="#{autorBean.addAuthor}"/>
+            <h:commandButton value="Guardar" action="#{authorBean.addAuthor}"/>
         </h:panelGrid>
     </h:form>
 </ui:composition>
