@@ -13,7 +13,9 @@
             <h:inputText id="fecha" value="#{authorBean.birthday}" required="true"/>
 
             <h:outputLabel for="telefono" value="Teléfono:"/>
-            <h:inputText id="telefono" value="#{authorBean.phoneNumber}"/>
+            <h:inputText id="telefono" value="#{authorBean.phoneNumber}" rendered="true">
+                <f:validator validatorId="svPhoneValidator"/>
+            </h:inputText>
 
             <h:outputLabel for="genero" value="Género:"/>
             <h:selectOneMenu id="genero" value="#{authorBean.genre}">
@@ -22,8 +24,10 @@
                 <f:selectItem itemLabel="Femenino" itemValue="F"/>
             </h:selectOneMenu>
 
-            <h:outputText value=""/>
+
             <h:commandButton value="Guardar" action="#{authorBean.addAuthor}"/>
         </h:panelGrid>
+        <h:message for="telefono" style="color:red"/>
+
     </h:form>
 </ui:composition>
