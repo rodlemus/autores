@@ -6,6 +6,7 @@ import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
 import java.io.Serializable;
+import java.text.ParseException;
 
 @Named("authorBean")
 @SessionScoped
@@ -51,7 +52,7 @@ public class AuthorBean implements Serializable {
         this.genre = genre;
     }
 
-    public void addAuthor(){
+    public void addAuthor() throws ParseException {
         this.createAuthorController.createAuthor(this);
     }
 
