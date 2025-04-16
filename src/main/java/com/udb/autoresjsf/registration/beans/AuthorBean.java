@@ -7,13 +7,14 @@ import jakarta.inject.Named;
 
 import java.io.Serializable;
 import java.text.ParseException;
+import java.util.Date;
 
 @Named("authorBean")
 @SessionScoped
 public class AuthorBean implements Serializable {
 
     private String name;
-    private String birthday;
+    private Date birthday;
     private String phoneNumber;
     private String genre;
 
@@ -28,11 +29,11 @@ public class AuthorBean implements Serializable {
         this.name = name;
     }
 
-    public String getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(String birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 

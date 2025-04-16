@@ -9,8 +9,12 @@
             <h:outputLabel for="nombre" value="Nombre:"/>
             <h:inputText id="nombre" value="#{authorBean.name}" required="true"/>
 
-            <h:outputLabel for="fecha" value="Fecha de nacimiento:"/>
-            <h:inputText id="fecha" value="#{authorBean.birthday}" required="true"/>
+            <h:outputLabel for="birthday" value="Fecha de nacimiento:"/>
+            <h:inputText id="birthday" value="#{authorBean.birthday}" required="true">
+                <f:passThroughAttribute name="type" value="date" />
+                <f:passThroughAttribute name="max" value="2007-01-01" />
+                <f:convertDateTime pattern="yyyy-MM-dd" />
+            </h:inputText>
 
             <h:outputLabel for="telefono" value="Teléfono:"/>
             <h:inputText id="telefono" value="#{authorBean.phoneNumber}" rendered="true">

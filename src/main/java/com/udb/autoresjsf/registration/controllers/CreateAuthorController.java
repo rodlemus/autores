@@ -8,8 +8,6 @@ import jakarta.inject.Named;
 import org.hibernate.SessionFactory;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @Named
 @RequestScoped
@@ -17,14 +15,28 @@ public class CreateAuthorController {
 
 
     public void createAuthor(AuthorBean authorBean) throws ParseException {
-        System.out.println("Creating author"+"\n"+authorBean);
-        SimpleDateFormat dateTimeFormatter = new SimpleDateFormat("dd/MM/yyyy");
-        Date birthdate = dateTimeFormatter.parse(authorBean.getBirthday());
+        System.out.println("Creating author\n" + authorBean);
 
         SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-        sessionFactory.inTransaction( session -> {
-            session.persist(new AuthorModel(authorBean.getName(),birthdate,authorBean.getPhoneNumber()));
+        sessionFactory.inTransaction(session -> {
+            // Buscar si ya existe un autor con ese nombre (ignorando mayúsculas/minúsculas)
+            Long count = session.createQuery(
+                            "SELECT COUNT(a) FROM AuthorModel a WHERE LOWER(a.name) = :name", Long.class)
+                    .setParameter("name", authorBean.getName().toLowerCase())
+                    .getSingleResult();
+
+            if (count > 0) {
+                System.out.println("Ya existe un autor con ese nombre.");
+            }
+
+            session.persist(new AuthorModel(
+                    authorBean.getName(),
+                    authorBean.getBirthday(),
+                    authorBean.getPhoneNumber()
+            ));
+
+            System.out.println("Author created");
         });
-        System.out.println("Author created");
     }
+
 }
